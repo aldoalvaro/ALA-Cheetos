@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cheetos_cream">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvSapaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/cheetos_dark"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:layout_marginBottom="12dp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imgSnack"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:src="@drawable/cheetos_flamin_hot"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvSnackName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/snack_name"
+            android:textSize="22sp"
+            android:textColor="@color/cheetos_red"
+            android:fontFamily="@font/bungee_regular"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvSnackDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/snack_desc"
+            android:textSize="14sp"
+            android:textColor="@color/cheetos_dark"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/tvSnackNutrition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/snack_nutrition"
+            android:textSize="14sp"
+            android:textColor="@color/cheetos_dark"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@color/white"
+            android:padding="16dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ALA-Cheetos</string>
+    <string name="btn_my_project">My Project</string>
+    <string name="snack_name">Cheetos® Flamin\' Hot® Puffs</string>
+    <string name="snack_desc">Cheetos Flamin\' Hot Puffs adalah snack keju berbentuk puff yang ringan dan renyah, dengan sensasi rasa pedas khas Flamin\' Hot. Terbuat dari tepung jagung dan keju cheddar asli.</string>
+    <string name="snack_nutrition">
+        Informasi Gizi (per 1 porsi / 13 keping, ±26g):\n
+        Kalori: 160 kkal\n
+        Lemak Total: 10 g (13% AKG)\n
+        Lemak Jenuh: 1.5 g (7% AKG)\n
+        Natrium: 280 mg (12% AKG)\n
+        Karbohidrat Total: 15 g (6% AKG)\n
+        Serat: &lt;1 g\n
+        Gula: &lt;1 g\n
+        Protein: 1 g\n\n
+        8 porsi per kemasan (8 oz / 226.8 g)
+    </string>
+    <string name="hint_nama">Masukkan nama kamu</string>
+    <string name="toast_nama_kosong">Nama tidak boleh kosong!</string>
+    <string name="toast_sapaan">Halo, %1$s! Menuju halaman project...</string>
+    <string name="sapaan_detail">Hai %1$s, ini project favoritku:</string>
+</resources>
