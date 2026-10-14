@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Salon Oscardo</string>
+    <string name="tagline">Kelola operasional dengan tenang</string>
+
+    <!-- Login -->
+    <string name="login_title">Selamat datang</string>
+    <string name="login_subtitle">Masuk ke Sistem Pengelolaan Keuangan Salon Oscardo.</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Kata sandi</string>
+    <string name="hint_email">manager@oscardo.com</string>
+    <string name="btn_login">Masuk ke dashboard</string>
+    <string name="btn_open_web">Buka SIPEKA SO M</string>
+    <string name="error_email_empty">Email tidak boleh kosong</string>
+    <string name="error_password_empty">Kata sandi tidak boleh kosong</string>
+    <string name="error_login_failed">Email atau kata sandi salah</string>
+    <string name="demo_account_note">Akun demo: manager@oscardo.com / oscardo123</string>
+    <string name="footer_copyright">© 2026 Salon Oscardo · Admin Dashboard</string>
+
+    <!-- Toolbar titles -->
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_karyawan">Data Karyawan</string>
+    <string name="title_web">SIPEKA SO M</string>
+
+    <!-- Web -->
+    <!-- Emulator Android: 10.0.2.2 = localhost komputer. Ganti dengan URL asli jika website sudah online. -->
+    <string name="web_url" translatable="false">https://pcr.ac.id</string>
+    <string name="web_error_title">Halaman belum tersedia</string>
+    <string name="web_error_desc">Website SIPEKA SO M belum bisa dibuka. Pastikan server web sudah berjalan atau ganti alamat web_url di strings.xml.</string>
+
+    <!-- Dashboard -->
+    <string name="dash_date">RABU, 30 SEPTEMBER</string>
+    <string name="dash_heading">Ringkasan hari ini</string>
+    <string name="dash_balance_label">Saldo kas tersedia</string>
+    <string name="dash_balance_value">Rp 24.860.000</string>
+    <string name="dash_balance_note">↗ 12,4% dari bulan lalu</string>
+    <string name="dash_income">Pemasukan</string>
+    <string name="dash_expense">Pengeluaran</string>
+    <string name="dash_profit">Laba bersih</string>
+    <string name="dash_income_value">Rp 8,2 jt</string>
+    <string name="dash_expense_value">Rp 3,6 jt</string>
+    <string name="dash_profit_value">Rp 4,6 jt</string>
+    <string name="dash_income_delta">+18,2%</string>
+    <string name="dash_expense_delta">−4,1%</string>
+    <string name="dash_profit_delta">+22,7%</string>
+    <string name="dash_recent">Transaksi terbaru</string>
+    <string name="dash_trx1_title">Layanan Hair Spa — Rina</string>
+    <string name="dash_trx1_time">Hari ini · 09.18</string>
+    <string name="dash_trx1_amount">+ Rp 275.000</string>
+    <string name="dash_trx2_title">Belanja bahan color cream</string>
+    <string name="dash_trx2_time">Hari ini · 08.42</string>
+    <string name="dash_trx2_amount">− Rp 680.000</string>
+    <string name="dash_btn_karyawan">Lihat Data Karyawan</string>
+
+    <!-- Karyawan -->
+    <string name="kar_header_label">TIM OSCARDO</string>
+    <string name="kar_total_label">TOTAL KARYAWAN</string>
+    <string name="kar_total_value">12 orang</string>
+    <string name="kar_total_note">9 hadir · 2 libur · 1 cuti</string>
+    <string name="kar_list_title">Daftar anggota tim</string>
+</resources>

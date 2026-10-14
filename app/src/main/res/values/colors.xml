@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GRAND DESIGN: Color Palette Salon Oscardo. Semua halaman WAJIB memakai warna dari file ini. -->
+<resources>
+    <color name="oscardo_green">#0F5C45</color>
+    <color name="oscardo_green_dark">#0A3F30</color>
+    <color name="oscardo_green_light">#DCEBE4</color>
+    <color name="oscardo_cream">#F5F1E8</color>
+    <color name="oscardo_white">#FFFFFF</color>
+    <color name="oscardo_red">#E31B23</color>
+    <color name="oscardo_red_light">#FBE3E4</color>
+    <color name="oscardo_ink">#1C1C1A</color>
+    <color name="oscardo_gray">#7A7A72</color>
+    <color name="oscardo_line">#E4DED0</color>
+    <color name="white">#FFFFFF</color>
+</resources>
