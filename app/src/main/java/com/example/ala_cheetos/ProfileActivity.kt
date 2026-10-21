@@ -3,7 +3,7 @@ package com.example.ala_cheetos
 import android.os.Bundle
 import com.example.ala_cheetos.databinding.ActivityProfileBinding
 
-class ProfileActivity : BaseActivity() {
+class ProfileActivity : ToolbarActivity() {
 
     private lateinit var binding: ActivityProfileBinding
 

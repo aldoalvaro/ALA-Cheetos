@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.example.ala_cheetos.databinding.ActivityDashboardBinding
 
-class DashboardActivity : BaseActivity() {
+class DashboardActivity : ToolbarActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var sharedPref: android.content.SharedPreferences

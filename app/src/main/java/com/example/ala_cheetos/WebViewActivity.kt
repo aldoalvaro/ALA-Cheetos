@@ -12,7 +12,7 @@ import android.webkit.WebViewClient
 import androidx.activity.addCallback
 import com.example.ala_cheetos.databinding.ActivityWebViewBinding
 
-class WebViewActivity : BaseActivity() {
+class WebViewActivity : ToolbarActivity() {
 
     private lateinit var binding: ActivityWebViewBinding
 

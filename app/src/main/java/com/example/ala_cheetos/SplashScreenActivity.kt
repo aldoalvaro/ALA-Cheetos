@@ -25,7 +25,7 @@ class SplashScreenActivity : AppCompatActivity() {
             val isLogin = sharedPref.getBoolean("isLogin", false)
 
             val intent = if (isLogin) {
-                Intent(this@SplashScreenActivity, DashboardActivity::class.java)
+                Intent(this@SplashScreenActivity, BaseActivity::class.java)
             } else {
                 Intent(this@SplashScreenActivity, MainActivity::class.java)
             }

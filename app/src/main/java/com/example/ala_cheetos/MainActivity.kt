@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         // Optional: jika sudah login, langsung ke Dashboard
         // (biasanya sudah di-handle Splash, tapi aman ditaruh juga)
         if (sharedPref.getBoolean("isLogin", false)) {
-            startActivity(Intent(this, DashboardActivity::class.java))
+            startActivity(Intent(this, BaseActivity::class.java))
             finish()
             return
         }
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             editor.putString("username", email)
             editor.apply()
 
-            startActivity(Intent(this, DashboardActivity::class.java))
+            startActivity(Intent(this, BaseActivity::class.java))
             finish()
         } else {
             // Gagal → AlertDialog sesuai materi
