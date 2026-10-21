@@ -29,15 +29,6 @@
             android:name=".BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".KaryawanActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".WebViewActivity"
             android:exported="false" />
     </application>
