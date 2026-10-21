@@ -21,6 +21,11 @@
     <string name="title_karyawan">Data Karyawan</string>
     <string name="title_web">SIPEKA SO M</string>
 
+    <!-- Bottom navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_karyawan">Karyawan</string>
+    <string name="nav_profile">Profil</string>
+
     <!-- Web -->
     <!-- Emulator Android: 10.0.2.2 = localhost komputer. Ganti dengan URL asli jika website sudah online. -->
     <string name="web_url" translatable="false">https://pcr.ac.id</string>
@@ -57,4 +62,6 @@
     <string name="kar_total_value">12 orang</string>
     <string name="kar_total_note">9 hadir · 2 libur · 1 cuti</string>
     <string name="kar_list_title">Daftar anggota tim</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

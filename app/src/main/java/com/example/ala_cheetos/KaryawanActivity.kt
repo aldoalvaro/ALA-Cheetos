@@ -11,7 +11,7 @@ import com.example.ala_cheetos.databinding.ItemKaryawanBinding
 
 data class Karyawan(val name: String, val role: String, val phone: String, val status: String)
 
-class KaryawanActivity : BaseActivity() {
+class KaryawanActivity : ToolbarActivity() {
 
     private lateinit var binding: ActivityKaryawanBinding
 
