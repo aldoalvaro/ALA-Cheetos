@@ -20,6 +20,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_karyawan">Data Karyawan</string>
     <string name="title_web">SIPEKA SO M</string>
+    <string name="title_profile">Profil Developer</string>
 
     <!-- Bottom navigation -->
     <string name="nav_dashboard">Dashboard</string>

@@ -1,7 +1,10 @@
 package com.example.ala_cheetos
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.ala_cheetos.dashboard.DashboardFragment
 import com.example.ala_cheetos.databinding.ActivityBaseBinding
@@ -15,8 +18,16 @@ class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // bottom = 0 supaya tidak ada jarak kosong di bawah BottomNavigation
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            insets
+        }
 
         /** DashboardFragment sebagai fragment default */
         if (savedInstanceState == null) {
