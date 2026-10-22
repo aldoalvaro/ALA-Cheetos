@@ -12,8 +12,8 @@
     <string name="btn_open_web">Buka SIPEKA SO M</string>
     <string name="error_email_empty">Email tidak boleh kosong</string>
     <string name="error_password_empty">Kata sandi tidak boleh kosong</string>
-    <string name="error_login_failed">Email atau kata sandi salah</string>
-    <string name="demo_account_note">Akun demo: manager@oscardo.com / oscardo123</string>
+    <string name="error_login_failed">Username atau kata sandi salah</string>
+    <string name="demo_account_note">Tips: username yang sama dengan password juga bisa masuk</string>
     <string name="footer_copyright">© 2026 Salon Oscardo · Admin Dashboard</string>
 
     <!-- Toolbar titles -->
@@ -65,4 +65,37 @@
     <string name="kar_list_title">Daftar anggota tim</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Login tambahan -->
+    <string name="label_username">Username</string>
+    <string name="hint_username">Masukkan username</string>
+    <string name="error_username_empty">Username tidak boleh kosong</string>
+    <string name="btn_register">Belum punya akun? Daftar</string>
+
+    <!-- Registrasi -->
+    <string name="register_title">Buat akun baru</string>
+    <string name="register_subtitle">Lengkapi data diri untuk mendaftar.</string>
+    <string name="label_name">Nama</string>
+    <string name="label_birth_date">Tanggal Lahir</string>
+    <string name="label_gender">Jenis Kelamin</string>
+    <string name="label_reg_password">Password</string>
+    <string name="label_confirm_password">Confirm Password</string>
+    <string name="hint_name">Nama lengkap</string>
+    <string name="hint_reg_email">nama@email.com</string>
+    <string name="hint_birth_date">Pilih tanggal lahir</string>
+    <string name="gender_male">Laki-laki</string>
+    <string name="gender_female">Perempuan</string>
+    <string name="btn_next">Selanjutnya</string>
+    <string name="btn_to_login">Sudah punya akun? Masuk</string>
+
+    <!-- Verifikasi -->
+    <string name="verif_title">Verifikasi Data</string>
+    <string name="verif_subtitle">Periksa data yang tersimpan sebelum dikirim.</string>
+    <string name="btn_submit">Submit</string>
+    <string name="btn_back">Kembali</string>
+
+    <!-- Berhasil -->
+    <string name="success_title">Registrasi Berhasil</string>
+    <string name="success_desc">Akun sudah terdaftar. Silakan login dengan username dan password yang baru dibuat.</string>
+    <string name="btn_go_login">Ke halaman Login</string>
 </resources>

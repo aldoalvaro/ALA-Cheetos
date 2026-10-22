@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/oscardo_cream"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            style="@style/Text.Heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/verif_title"
+            android:textSize="28sp" />
+
+        <TextView
+            style="@style/Text.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/verif_subtitle" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Oscardo.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/label_name" />
+                <TextView android:id="@+id/tvName" style="@style/Text.BodyBold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/label_email" />
+                <TextView android:id="@+id/tvEmail" style="@style/Text.BodyBold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/label_birth_date" />
+                <TextView android:id="@+id/tvBirthDate" style="@style/Text.BodyBold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/label_gender" />
+                <TextView android:id="@+id/tvGender" style="@style/Text.BodyBold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/label_username" />
+                <TextView android:id="@+id/tvUsername" style="@style/Text.BodyBold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/label_reg_password" />
+                <TextView android:id="@+id/tvPassword" style="@style/Text.BodyBold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/label_confirm_password" />
+                <TextView android:id="@+id/tvConfirmPassword" style="@style/Text.BodyBold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <!-- Pesan error validasi -->
+                <TextView
+                    android:id="@+id/tvError"
+                    style="@style/Text.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/oscardo_red_light"
+                    android:padding="12dp"
+                    android:textColor="@color/oscardo_red"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmit"
+                    style="@style/Widget.Oscardo.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/btn_submit" />
+
+                <!-- Hanya muncul kalau validasi gagal -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBack"
+                    style="@style/Widget.Oscardo.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/btn_back"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>

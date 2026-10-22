@@ -31,6 +31,16 @@
         <activity
             android:name=".WebViewActivity"
             android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".VerifikasiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrasiBerhasilActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

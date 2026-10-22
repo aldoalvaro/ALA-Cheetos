@@ -65,25 +65,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/label_email" />
+                    android:text="@string/label_username" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilEmail"
+                    android:id="@+id/tilUsername"
                     style="@style/Widget.Oscardo.TextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    app:startIconDrawable="@drawable/ic_mail">
+                    app:startIconDrawable="@drawable/ic_profile">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/inputEmail"
+                        android:id="@+id/inputUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/hint_email"
-                        android:inputType="textEmailAddress"
+                        android:hint="@string/hint_username"
+                        android:inputType="text"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <TextView
                     style="@style/Text.BodyBold"
                     android:layout_width="wrap_content"
@@ -124,6 +123,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/btn_open_web" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegister"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/btn_register"
+                    android:textAllCaps="false"
+                    android:textColor="@color/oscardo_green" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
