@@ -14,6 +14,13 @@ import com.example.ala_cheetos.MainActivity
 import com.example.ala_cheetos.R
 import com.example.ala_cheetos.databinding.FragmentDashboardBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.content.ActivityNotFoundException
+import android.net.Uri
+import android.widget.Toast
+import com.example.ala_cheetos.laporan.LaporanPdfGenerator
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class DashboardFragment : Fragment() {
 
@@ -43,6 +50,7 @@ class DashboardFragment : Fragment() {
 
         // Tombol pintasan: pindah tab bottom navigation
         // (listener di BaseActivity yang mengganti fragment-nya)
+        binding.btnExportPdf.setOnClickListener { exportPdf() }
         binding.btnKaryawan.setOnClickListener { selectTab(R.id.nav_karyawan) }
         binding.btnProfile.setOnClickListener { selectTab(R.id.nav_profile) }
         binding.btnLogout.setOnClickListener { showLogoutDialog() }
@@ -52,6 +60,51 @@ class DashboardFragment : Fragment() {
         requireActivity()
             .findViewById<BottomNavigationView>(R.id.bottom_nav_view)
             .selectedItemId = menuId
+    }
+
+    /** Buat laporan keuangan PDF, simpan ke Downloads, lalu tawarkan untuk membukanya. */
+    private fun exportPdf() {
+        val ctx = requireContext()
+        val stamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+        val namaFile = "Laporan_Keuangan_Oscardo_$stamp.pdf"
+
+        val pdf = LaporanPdfGenerator.buatPdf(ctx)
+        val hasil = try {
+            LaporanPdfGenerator.simpan(ctx, pdf, namaFile)
+        } finally {
+            pdf.close()
+        }
+
+        if (hasil == null) {
+            Toast.makeText(ctx, R.string.pdf_failed, Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val pesan = if (hasil.diDownloads) {
+            getString(R.string.pdf_saved_downloads, hasil.lokasi)
+        } else {
+            getString(R.string.pdf_saved_app_folder, hasil.lokasi)
+        }
+        val dialog = AlertDialog.Builder(ctx)
+            .setTitle(R.string.pdf_saved_title)
+            .setMessage(pesan)
+            .setNegativeButton(R.string.btn_close, null)
+        hasil.uri?.let { uri ->
+            dialog.setPositiveButton(R.string.btn_open) { _, _ -> bukaPdf(uri) }
+        }
+        dialog.show()
+    }
+
+    private fun bukaPdf(uri: Uri) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, "application/pdf")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(requireContext(), R.string.pdf_no_viewer, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showLogoutDialog() {

@@ -115,6 +115,15 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/btn_login" />
 
+                <!-- Login biometrik (sidik jari / wajah) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBiometric"
+                    style="@style/Widget.Oscardo.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/btn_biometric" />
+
                 <!-- Tombol baru: membuka halaman web -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnWeb"

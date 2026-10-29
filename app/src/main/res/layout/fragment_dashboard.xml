@@ -166,11 +166,19 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnKaryawan"
+                android:id="@+id/btnExportPdf"
                 style="@style/Widget.Oscardo.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:text="@string/btn_export_pdf" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnKaryawan"
+                style="@style/Widget.Oscardo.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:text="@string/dash_btn_karyawan" />
 
             <com.google.android.material.button.MaterialButton

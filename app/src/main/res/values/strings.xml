@@ -98,4 +98,25 @@
     <string name="success_title">Registrasi Berhasil</string>
     <string name="success_desc">Akun sudah terdaftar. Silakan login dengan username dan password yang baru dibuat.</string>
     <string name="btn_go_login">Ke halaman Login</string>
+
+    <!-- Login biometrik -->
+    <string name="btn_biometric">Masuk dengan sidik jari</string>
+    <string name="biometric_title">Login Biometrik</string>
+    <string name="biometric_subtitle">Verifikasi identitas Anda untuk masuk ke Salon Oscardo</string>
+    <string name="biometric_cancel">Batal</string>
+    <string name="biometric_no_saved">Login dengan username dan password satu kali dulu untuk mengaktifkan login biometrik</string>
+    <string name="biometric_unavailable">Biometrik tidak tersedia. Pastikan perangkat mendukung dan sidik jari sudah terdaftar di Pengaturan</string>
+    <string name="biometric_failed">Autentikasi gagal, coba lagi</string>
+
+    <!-- Laporan PDF -->
+    <string name="btn_export_pdf">Cetak Laporan Keuangan (PDF)</string>
+    <string name="pdf_title">Laporan Keuangan</string>
+    <string name="pdf_summary">Ringkasan</string>
+    <string name="pdf_saved_title">Laporan tersimpan</string>
+    <string name="pdf_saved_downloads">Tersimpan di folder Downloads:\n%1$s</string>
+    <string name="pdf_saved_app_folder">Tersimpan di:\n%1$s</string>
+    <string name="pdf_failed">Gagal membuat laporan PDF</string>
+    <string name="pdf_no_viewer">Tidak ada aplikasi pembuka PDF. File ada di folder Downloads.</string>
+    <string name="btn_open">Buka</string>
+    <string name="btn_close">Tutup</string>
 </resources>
