@@ -119,4 +119,27 @@
     <string name="pdf_no_viewer">Tidak ada aplikasi pembuka PDF. File ada di folder Downloads.</string>
     <string name="btn_open">Buka</string>
     <string name="btn_close">Tutup</string>
+
+    <!-- Menu Home -->
+    <string name="menu_title">Menu utama</string>
+    <string name="menu_karyawan">Karyawan</string>
+    <string name="menu_layanan">Layanan</string>
+    <string name="menu_profil">Profil</string>
+    <string name="menu_logout">Logout</string>
+
+    <!-- Layanan -->
+    <string name="title_layanan">Layanan Salon</string>
+    <string name="layanan_label">SIPEKA SO</string>
+    <string name="layanan_heading">Layanan dan Harga</string>
+
+    <!-- Onboarding -->
+    <string name="onb_skip">Lewati</string>
+    <string name="onb_next">Lanjut</string>
+    <string name="onb_start">Mulai</string>
+    <string name="onb1_title">Catat Keuangan Salon</string>
+    <string name="onb1_desc">Pantau pemasukan, pengeluaran, dan laba bersih Salon Oscardo setiap hari dalam satu aplikasi.</string>
+    <string name="onb2_title">Kelola Karyawan dan Layanan</string>
+    <string name="onb2_desc">Lihat data karyawan beserta status kehadiran, serta daftar layanan salon lengkap dengan harganya.</string>
+    <string name="onb3_title">Laporan Rapi dan Aman</string>
+    <string name="onb3_desc">Ringkasan keuangan tersaji jelas, dan akun dilindungi dengan login yang aman.</string>
 </resources>

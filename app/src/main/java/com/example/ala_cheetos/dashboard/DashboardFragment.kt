@@ -21,6 +21,8 @@ import com.example.ala_cheetos.laporan.LaporanPdfGenerator
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ala_cheetos.layanan.LayananActivity
 
 class DashboardFragment : Fragment() {
 
@@ -28,6 +30,15 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var sharedPref: SharedPreferences
+
+    private val dataTransaksi = listOf(
+        Transaksi("Layanan Hair Spa — Rina", "Hari ini · 09.18", "+ Rp 275.000", true),
+        Transaksi("Belanja bahan color cream", "Hari ini · 08.42", "− Rp 680.000", false),
+        Transaksi("Layanan Creambath — Dewi", "Kemarin · 16.05", "+ Rp 150.000", true),
+        Transaksi("Layanan Potong Rambut — Budi", "Kemarin · 14.30", "+ Rp 60.000", true),
+        Transaksi("Bayar listrik salon", "Kemarin · 10.00", "− Rp 850.000", false),
+        Transaksi("Layanan Hair Coloring — Sari", "2 hari lalu · 15.20", "+ Rp 450.000", true)
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,9 +62,16 @@ class DashboardFragment : Fragment() {
         // Tombol pintasan: pindah tab bottom navigation
         // (listener di BaseActivity yang mengganti fragment-nya)
         binding.btnExportPdf.setOnClickListener { exportPdf() }
-        binding.btnKaryawan.setOnClickListener { selectTab(R.id.nav_karyawan) }
-        binding.btnProfile.setOnClickListener { selectTab(R.id.nav_profile) }
-        binding.btnLogout.setOnClickListener { showLogoutDialog() }
+        binding.menuKaryawan.setOnClickListener { selectTab(R.id.nav_karyawan) }
+        binding.menuProfil.setOnClickListener { selectTab(R.id.nav_profile) }
+        binding.menuLogout.setOnClickListener { showLogoutDialog() }
+        binding.rvTransaksi.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvTransaksi.adapter = TransaksiAdapter(dataTransaksi) { trx ->
+            Toast.makeText(requireContext(), trx.title, Toast.LENGTH_SHORT).show()
+        }
+        binding.menuLayanan.setOnClickListener {
+            startActivity(Intent(requireContext(), LayananActivity::class.java))
+        }
     }
 
     private fun selectTab(menuId: Int) {
