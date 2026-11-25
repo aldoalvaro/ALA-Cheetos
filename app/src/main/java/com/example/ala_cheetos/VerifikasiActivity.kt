@@ -6,9 +6,15 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.ala_cheetos.data.api.SupabaseClient
+import com.example.ala_cheetos.data.model.UserModel
 import com.example.ala_cheetos.databinding.ActivityVerifikasiBinding
+import kotlinx.coroutines.launch
+import java.io.IOException
+import java.security.MessageDigest
 
-/** Soal 2: Tampilkan isian dari SharedPreferences, lalu validasi saat Submit. */
+/** Soal 2: Tampilkan isian dari SharedPreferences, validasi, lalu simpan ke Supabase (tabel users). */
 class VerifikasiActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVerifikasiBinding
@@ -50,7 +56,6 @@ class VerifikasiActivity : AppCompatActivity() {
         val password = pref(RegisterActivity.KEY_PASSWORD)
         val confirm = pref(RegisterActivity.KEY_CONFIRM_PASSWORD)
 
-        // 1) Semua inputan tidak boleh kosong + cek value-nya
         if (name.isBlank()) errors += "Nama tidak boleh kosong"
 
         if (email.isBlank()) errors += "Email tidak boleh kosong"
@@ -62,7 +67,6 @@ class VerifikasiActivity : AppCompatActivity() {
         if (password.isBlank()) errors += "Password tidak boleh kosong"
         if (confirm.isBlank()) errors += "Confirm Password tidak boleh kosong"
 
-        // 2) Password dan Confirm Password harus sama
         if (password.isNotBlank() && confirm.isNotBlank() && password != confirm) {
             errors += "Password dan Confirm Password harus sama"
         }
@@ -71,17 +75,67 @@ class VerifikasiActivity : AppCompatActivity() {
 
     private fun submit() {
         val errors = validate()
+        if (errors.isNotEmpty()) {
+            showErrors(errors)
+            return
+        }
+        registerToSupabase()
+    }
 
-        if (errors.isEmpty()) {
-            // Lolos validasi: tandai akun valid, tampilkan halaman "Registrasi Berhasil"
-            regPref.edit().putBoolean(RegisterActivity.KEY_VERIFIED, true).apply()
-            startActivity(Intent(this, RegistrasiBerhasilActivity::class.java))
-            finish()
-        } else {
-            // Gagal: tampilkan daftar error + munculkan tombol Kembali
-            binding.tvError.text = errors.joinToString(separator = "\n") { "• $it" }
-            binding.tvError.visibility = View.VISIBLE
-            binding.btnBack.visibility = View.VISIBLE
+    private fun registerToSupabase() {
+        setLoading(true)
+
+        val user = UserModel(
+            name = pref(RegisterActivity.KEY_NAME),
+            email = pref(RegisterActivity.KEY_EMAIL),
+            birthDate = toIsoDate(pref(RegisterActivity.KEY_BIRTH_DATE)),
+            gender = pref(RegisterActivity.KEY_GENDER),
+            username = pref(RegisterActivity.KEY_USERNAME),
+            // Password disimpan dalam bentuk hash, bukan teks asli
+            password = sha256(pref(RegisterActivity.KEY_PASSWORD))
+        )
+
+        lifecycleScope.launch {
+            try {
+                val response = SupabaseClient.userApi.register(user)
+                when {
+                    response.isSuccessful -> {
+                        // Tandai akun valid (dipakai aturan login lama), lanjut ke halaman berhasil
+                        regPref.edit().putBoolean(RegisterActivity.KEY_VERIFIED, true).apply()
+                        startActivity(Intent(this@VerifikasiActivity, RegistrasiBerhasilActivity::class.java))
+                        finish()
+                    }
+                    response.code() == 409 ->
+                        showErrors(listOf("Username atau email sudah terdaftar"))
+                    else ->
+                        showErrors(listOf("Gagal menyimpan ke server (kode ${response.code()})"))
+                }
+            } catch (e: IOException) {
+                showErrors(listOf("Tidak bisa terhubung ke server. Periksa koneksi internet."))
+            } finally {
+                setLoading(false)
+            }
         }
     }
+
+    private fun showErrors(errors: List<String>) {
+        binding.tvError.text = errors.joinToString(separator = "\n") { "• $it" }
+        binding.tvError.visibility = View.VISIBLE
+        binding.btnBack.visibility = View.VISIBLE
+    }
+
+    private fun setLoading(loading: Boolean) {
+        binding.btnSubmit.isEnabled = !loading
+    }
+
+    /** dd/MM/yyyy (dari DatePicker) -> yyyy-MM-dd (format kolom date di PostgreSQL) */
+    private fun toIsoDate(ddMMyyyy: String): String {
+        val p = ddMMyyyy.split("/")
+        return if (p.size == 3) "${p[2]}-${p[1]}-${p[0]}" else ddMMyyyy
+    }
+
+    private fun sha256(text: String): String =
+        MessageDigest.getInstance("SHA-256")
+            .digest(text.toByteArray())
+            .joinToString("") { "%02x".format(it) }
 }

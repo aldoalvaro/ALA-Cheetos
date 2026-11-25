@@ -47,8 +47,8 @@
                 android:padding="20dp">
 
                 <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/kar_total_label" android:textColor="@color/oscardo_green_light" />
-                <TextView style="@style/Text.Heading" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="@string/kar_total_value" android:textColor="@color/oscardo_white" android:textSize="28sp" />
-                <TextView style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="@string/kar_total_note" android:textColor="@color/oscardo_green_light" />
+                <TextView android:id="@+id/tvTotalValue" style="@style/Text.Heading" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" tools:text="4 orang" android:textColor="@color/oscardo_white" android:textSize="28sp" />
+                <TextView android:id="@+id/tvTotalNote" style="@style/Text.Label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" tools:text="2 hadir · 1 libur · 1 cuti" android:textColor="@color/oscardo_green_light" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -66,5 +66,13 @@
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:clipToPadding="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTambah"
+            style="@style/Widget.Oscardo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="+ Tambah Karyawan" />
     </LinearLayout>
 </LinearLayout>

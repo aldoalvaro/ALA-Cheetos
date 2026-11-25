@@ -1,30 +1,30 @@
 package com.example.ala_cheetos.layanan
 
+import android.content.DialogInterface
 import android.os.Bundle
-import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ala_cheetos.R
 import com.example.ala_cheetos.ToolbarActivity
+import com.example.ala_cheetos.data.api.SupabaseClient
+import com.example.ala_cheetos.data.model.LayananModel
 import com.example.ala_cheetos.databinding.ActivityLayananBinding
+import com.example.ala_cheetos.databinding.DialogLayananBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 class LayananActivity : ToolbarActivity() {
 
     private lateinit var binding: ActivityLayananBinding
+    private lateinit var adapter: LayananAdapter
 
-    // Tiap Map = 1 baris ListView
-    private val data = listOf(
-        mapOf("nama" to "Potong Rambut Pria", "durasi" to "30 menit", "harga" to "Rp 60.000"),
-        mapOf("nama" to "Potong Rambut Wanita", "durasi" to "45 menit", "harga" to "Rp 85.000"),
-        mapOf("nama" to "Creambath", "durasi" to "60 menit", "harga" to "Rp 150.000"),
-        mapOf("nama" to "Hair Spa", "durasi" to "75 menit", "harga" to "Rp 275.000"),
-        mapOf("nama" to "Hair Coloring", "durasi" to "120 menit", "harga" to "Rp 450.000"),
-        mapOf("nama" to "Smoothing", "durasi" to "150 menit", "harga" to "Rp 650.000"),
-        mapOf("nama" to "Hair Mask", "durasi" to "45 menit", "harga" to "Rp 120.000"),
-        mapOf("nama" to "Manicure", "durasi" to "40 menit", "harga" to "Rp 90.000")
-    )
+    private val api get() = SupabaseClient.layananApi
+    private val items = mutableListOf<LayananModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,18 +41,129 @@ class LayananActivity : ToolbarActivity() {
 
         setupToolbar(binding.appBar.toolbar, getString(R.string.title_layanan))
 
-        // SimpleAdapter: map key -> id TextView di item_layanan.xml
-        val adapter = SimpleAdapter(
-            this,
-            data,
-            R.layout.item_layanan,
-            arrayOf("nama", "durasi", "harga"),
-            intArrayOf(R.id.tvNamaLayanan, R.id.tvDurasi, R.id.tvHarga)
-        )
-        binding.lvLayanan.adapter = adapter
+        adapter = LayananAdapter(items) { showOptions(it) }
+        binding.rvLayanan.layoutManager = LinearLayoutManager(this)
+        binding.rvLayanan.adapter = adapter
 
-        binding.lvLayanan.setOnItemClickListener { _, _, position, _ ->
-            Toast.makeText(this, data[position]["nama"], Toast.LENGTH_SHORT).show()
+        binding.btnTambah.setOnClickListener { showForm(null) }
+
+        loadData()
+    }
+
+    // ---------- READ ----------
+    private fun loadData() {
+        lifecycleScope.launch {
+            try {
+                val res = api.getAll()
+                if (res.isSuccessful) {
+                    items.clear()
+                    items.addAll(res.body().orEmpty())
+                    adapter.notifyDataSetChanged()
+                } else {
+                    toast("Gagal memuat data (kode ${res.code()})")
+                }
+            } catch (e: IOException) {
+                toast("Tidak ada koneksi internet")
+            }
         }
     }
+
+    // ---------- Pilihan Edit / Hapus ----------
+    private fun showOptions(item: LayananModel) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(item.nama)
+            .setItems(arrayOf("Edit", "Hapus")) { _, which ->
+                if (which == 0) showForm(item) else confirmDelete(item)
+            }
+            .show()
+    }
+
+    // ---------- Form Tambah / Edit ----------
+    private fun showForm(existing: LayananModel?) {
+        val form = DialogLayananBinding.inflate(layoutInflater)
+        existing?.let {
+            form.etNama.setText(it.nama)
+            form.etDurasi.setText(it.durasiMenit.toString())
+            form.etHarga.setText(it.harga.toString())
+        }
+
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle(if (existing == null) "Tambah Layanan" else "Edit Layanan")
+            .setView(form.root)
+            .setNegativeButton("Batal", null)
+            .setPositiveButton("Simpan", null)
+            .create()
+
+        dialog.setOnShowListener {
+            dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
+                val nama = form.etNama.text.toString().trim()
+                val durasi = form.etDurasi.text.toString().trim().toIntOrNull()
+                val harga = form.etHarga.text.toString().trim().toLongOrNull()
+
+                if (nama.isEmpty()) {
+                    form.etNama.error = "Nama layanan wajib diisi"
+                    return@setOnClickListener
+                }
+                if (durasi == null || durasi <= 0) {
+                    form.etDurasi.error = "Durasi harus berupa angka > 0"
+                    return@setOnClickListener
+                }
+                if (harga == null || harga < 0) {
+                    form.etHarga.error = "Harga harus berupa angka"
+                    return@setOnClickListener
+                }
+
+                save(existing, LayananModel(nama = nama, durasiMenit = durasi, harga = harga))
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
+    }
+
+    // ---------- CREATE / UPDATE ----------
+    private fun save(existing: LayananModel?, body: LayananModel) {
+        lifecycleScope.launch {
+            try {
+                val res = if (existing == null) api.insert(body)
+                else api.update("eq.${existing.id}", body)
+
+                if (res.isSuccessful) {
+                    toast(if (existing == null) "Layanan ditambahkan" else "Layanan diperbarui")
+                    loadData()
+                } else {
+                    toast("Gagal menyimpan (kode ${res.code()})")
+                }
+            } catch (e: IOException) {
+                toast("Tidak ada koneksi internet")
+            }
+        }
+    }
+
+    // ---------- DELETE ----------
+    private fun confirmDelete(item: LayananModel) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Hapus layanan?")
+            .setMessage("Layanan ${item.nama} akan dihapus permanen.")
+            .setNegativeButton("Batal", null)
+            .setPositiveButton("Hapus") { _, _ -> delete(item) }
+            .show()
+    }
+
+    private fun delete(item: LayananModel) {
+        lifecycleScope.launch {
+            try {
+                val res = api.delete("eq.${item.id}")
+                if (res.isSuccessful) {
+                    toast("Layanan dihapus")
+                    loadData()
+                } else {
+                    toast("Gagal menghapus (kode ${res.code()})")
+                }
+            } catch (e: IOException) {
+                toast("Tidak ada koneksi internet")
+            }
+        }
+    }
+
+    private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }

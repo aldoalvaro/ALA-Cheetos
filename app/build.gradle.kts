@@ -47,4 +47,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     implementation(libs.androidx.biometric)
     implementation(libs.tbuonomo.dotsindicator)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson)
+    implementation(libs.kotlinx.coroutines.android)
 }

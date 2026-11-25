@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ala_cheetos.R
+import com.example.ala_cheetos.data.model.KaryawanModel
 import com.example.ala_cheetos.databinding.ItemKaryawanBinding
 
-data class Karyawan(val name: String, val role: String, val phone: String, val status: String)
-
-class KaryawanAdapter(private val items: List<Karyawan>) :
-    RecyclerView.Adapter<KaryawanAdapter.VH>() {
+class KaryawanAdapter(
+    private val items: List<KaryawanModel>,
+    private val onClick: (KaryawanModel) -> Unit
+) : RecyclerView.Adapter<KaryawanAdapter.VH>() {
 
     class VH(val b: ItemKaryawanBinding) : RecyclerView.ViewHolder(b.root)
 
@@ -23,10 +24,14 @@ class KaryawanAdapter(private val items: List<Karyawan>) :
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = items[position]
         val ctx = holder.b.root.context
-        holder.b.tvInitial.text = item.name.split(" ").take(2).joinToString("") { it.first().uppercase() }
+
+        holder.b.tvInitial.text = item.name.trim().split(" ")
+            .filter { it.isNotEmpty() }
+            .take(2)
+            .joinToString("") { it.first().uppercase() }
         holder.b.tvName.text = item.name
         holder.b.tvRole.text = item.role
-        holder.b.tvPhone.text = item.phone
+        holder.b.tvPhone.text = item.phone.orEmpty()
         holder.b.tvStatus.text = item.status
 
         val (bg, fg) = when (item.status) {
@@ -36,5 +41,7 @@ class KaryawanAdapter(private val items: List<Karyawan>) :
         }
         holder.b.tvStatus.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(ctx, bg))
         holder.b.tvStatus.setTextColor(ContextCompat.getColor(ctx, fg))
+
+        holder.b.root.setOnClickListener { onClick(item) }
     }
 }

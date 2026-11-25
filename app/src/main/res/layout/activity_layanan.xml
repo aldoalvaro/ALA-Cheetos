@@ -31,14 +31,20 @@
             android:layout_marginTop="2dp"
             android:text="@string/layanan_heading" />
 
-        <ListView
-            android:id="@+id/lvLayanan"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLayanan"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:scrollbars="none" />
+            android:clipToPadding="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTambah"
+            style="@style/Widget.Oscardo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="+ Tambah Layanan" />
     </LinearLayout>
 </LinearLayout>
